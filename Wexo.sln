@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wexo.Application", "Wexo.Application\Wexo.Application.csproj", "{9316CA16-0CB3-4256-9172-AA1C6E6CA1CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wexo.Api", "Wexo.Api\Wexo.Api.csproj", "{9316CA16-0CB3-4256-9172-AA1C6E6CA1CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wexo.Data", "Wexo.Data\Wexo.Data.csproj", "{CD21AC02-E5BC-4008-AC39-83A09102C7B6}"
 EndProject
