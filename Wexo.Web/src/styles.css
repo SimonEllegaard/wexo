@@ -1,4 +1,36 @@
-html,
+@import url('https://fonts.googleapis.com/css2?family=Helvetica:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --background: #10131d;
+  --surface: #191e2b;
+  --surface-hover: #222838;
+  --accent: #a78bfa;
+  --text-primary: #f8fafc;
+  --text-secondary: #9ca3af;
+  --border: #2b3242;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text-primary);
   font-family: Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
 }

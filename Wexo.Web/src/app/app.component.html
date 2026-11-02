@@ -6,9 +6,8 @@
 
   <div class="movie-row">
     <div *ngFor="let movie of genreMovies[genre.name]" class="movie-card">
-      <img [src]="'https://image.tmdb.org/t/p/w342' + movie.poster_path" [alt]="movie.title"/>
+      <img [src]="configuration!.images.secure_base_url + configuration!.images.poster_sizes[2] + movie.poster_path" [alt]="movie.title"/>
       <h3>{{ movie.title }}</h3>
       </div>
-    }
   </div>
 </section>

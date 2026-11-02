@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Genre} from "./models/genre";
 import {Movie} from "./models/movie";
+import {Configuration} from "./models/configuration";
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
     'Documentary',
     'Horror',
   ]
-  genreMovies: Record<string, Movie[]> = {};
+  public genreMovies: Record<string, Movie[]> = {};
+  public configuration!: Configuration;
 
   ngOnInit(): void
   {
@@ -33,13 +35,17 @@ export class AppComponent implements OnInit {
       }
     };
 
+    fetch('https://api.themoviedb.org/3/configuration', options)
+      .then(response => response.json())
+      .then(data => {console.log(data); this.configuration = data});
+
     fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
       .then(res => res.json())
       .then(json => {
         this.genres = this.mapAndFilterGenres(json);
         this.genres.forEach(genre => fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre.id}`, options)
           .then(res => res.json())
-          .then(json => this.genreMovies[genre.name] = json.results))
+          .then(json => { console.log(json); this.genreMovies[genre.name] = json.results}))
       })
       .catch(err => console.error(err));
   }
