@@ -8,7 +8,7 @@ import {Configuration} from "../models/configuration";
   templateUrl: './frontpage.html',
   styleUrls: ['./frontpage.css']
 })
-export class AppComponent implements OnInit {
+export class Frontpage implements OnInit {
   title = 'wexo-web';
   genres: Genre[] = [];
   genresToDisplay = [
