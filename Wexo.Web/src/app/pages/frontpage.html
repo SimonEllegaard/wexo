@@ -1,0 +1,27 @@
+<section *ngFor="let genre of genres" class="genre-section">
+  <div class="genre-header">
+    <h2>{{ genre.name }}</h2>
+    <a href="#">View all {{ genre.name }} ({{ genre.id }})</a>
+  </div>
+
+  <div class="movie-row-container">
+    <button
+      class="scroll-button left"
+      (click)="scroll(movieRow, 'left')"
+      aria-label="Scroll left">
+      ‹
+    </button>
+    <div class="movie-row" #movieRow>
+      <div *ngFor="let movie of genreMovies[genre.name]" class="movie-card">
+        <img [src]="configuration!.images.secure_base_url + configuration!.images.poster_sizes[2] + movie.poster_path" [alt]="movie.title"/>
+        <h3>{{ movie.title }}</h3>
+      </div>
+    </div>
+    <button
+      class="scroll-button right"
+      (click)="scroll(movieRow, 'right')"
+      aria-label="Scroll right">
+      ›
+    </button>
+  </div>
+</section>
