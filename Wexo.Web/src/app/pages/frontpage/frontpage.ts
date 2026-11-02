@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChildren} from '@angular/core';
-import {Genre} from "../models/genre";
-import {Movie} from "../models/movie";
-import {Configuration} from "../models/configuration";
+import {Genre} from "../../models/genre";
+import {Movie} from "../../models/movie";
+import {Configuration} from "../../models/configuration";
 
 @Component({
   selector: 'frontpage',
@@ -9,7 +9,7 @@ import {Configuration} from "../models/configuration";
   styleUrls: ['./frontpage.css']
 })
 export class Frontpage implements OnInit {
-  title = 'wexo-web';
+  public configuration!: Configuration;
   genres: Genre[] = [];
   genresToDisplay = [
     'Action',
@@ -23,7 +23,6 @@ export class Frontpage implements OnInit {
     'Horror',
   ]
   public genreMovies: Record<string, Movie[]> = {};
-  public configuration!: Configuration;
 
   ngOnInit(): void
   {
