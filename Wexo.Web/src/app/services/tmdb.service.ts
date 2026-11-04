@@ -2,6 +2,8 @@ import {Configuration} from "../models/configuration";
 import {Genre} from "../models/genre";
 import {Injectable} from "@angular/core";
 import {MovieDetails} from "../models/movieDetails";
+import {MovieCredits} from "../models/movieCredits";
+import {MovieVideos} from "../models/movieVideos";
 
 @Injectable({
   providedIn: 'root'
@@ -28,21 +30,19 @@ export class TmdbService {
   }
 
   public async getMoviesByGenre(genreId: number): Promise<any> {
-    try {
-      return await this.fetchAndGetJson(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}`);
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
+    return await this.fetchAndGetJson(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}`);
   }
 
   public async getMovieDetails(movieId: number): Promise<MovieDetails> {
-    try {
-      return await this.fetchAndGetJson(`https://api.themoviedb.org/3/movie/${movieId}`);
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
+    return await this.fetchAndGetJson(`https://api.themoviedb.org/3/movie/${movieId}`);
+  }
+
+  public async getMovieCredits(movieId: number): Promise<MovieCredits> {
+    return await this.fetchAndGetJson(`https://api.themoviedb.org/3/movie/${movieId}/credits`);
+  }
+
+  public async getMovieVideos(movieId: number): Promise<MovieVideos> {
+    return await this.fetchAndGetJson(`https://api.themoviedb.org/3/movie/${movieId}/vmoies`);
   }
 
   private async fetchAndGetJson(url: string): Promise<any> {
@@ -54,6 +54,9 @@ export class TmdbService {
       }
     };
     const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error('Failed to fetch movie videos');
+    }
     return await response.json();
   }
 }

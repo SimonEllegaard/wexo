@@ -3,6 +3,7 @@ import {Genre} from "../../models/genre";
 import {Movie} from "../../models/movie";
 import {Configuration} from "../../models/configuration";
 import {TmdbService} from "../../services/tmdb.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'frontpage',
@@ -27,10 +28,13 @@ export class Frontpage implements OnInit {
   public genreCount: Record<string, number> = {};
 
   constructor(
-    private tmdbService: TmdbService) {
+    private tmdbService: TmdbService,
+    private titleService: Title) {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle(`Frontpage`);
+
     this.tmdbService.getConfiguration()
       .then(config => this.configuration = config);
 

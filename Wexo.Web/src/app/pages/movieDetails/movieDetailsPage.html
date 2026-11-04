@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>movieDetails.title</title>
-</head>
-<body>
- {{ movieDetailsString }}
-</body>
-</html>
+<button (click)="updateWishlist()">
+  {{ isInWishlist ? 'Remove from wishlist' : 'Add to wishlist' }}
+</button>
+<div *ngFor="let property of movieDetails | keyvalue">
+ {{ property.key | json | formatMovieProperty }}: {{ property.value | json | formatMovieProperty }}
+ <hr>
+</div>
+<div *ngFor="let property of movieCredits | keyvalue">
+ {{ property.key | json | formatMovieProperty }}: {{ property.value | json | formatMovieProperty }}
+ <hr>
+</div>
+<div *ngFor="let property of movieVideos | keyvalue">
+ {{ property.key | json | formatMovieProperty }}: {{ property.value | json | formatMovieProperty }}
+ <hr>
+</div>
