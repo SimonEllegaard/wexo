@@ -14,7 +14,9 @@
     <div #movieRow class="movie-row">
       <div *ngFor="let movie of genreMovies[genre.name]" class="movie-card" [routerLink]="['/movie', movie.id]">
         <img [alt]="movie.title"
-             [src]="configuration.images.secure_base_url + configuration.images.poster_sizes[2] + movie.poster_path"/>
+             [src]="movie.poster_path
+                ? configuration.images.secure_base_url + configuration.images.poster_sizes[2] + movie.poster_path
+                : 'assets/no-poster.png'"/>
         <h3>{{ movie.title }}</h3>
       </div>
     </div>
