@@ -10,7 +10,6 @@ import {TmdbService} from "../../services/tmdb.service";
   styleUrls: ['./frontpage.css']
 })
 export class Frontpage implements OnInit {
-  TmdbService: TmdbService;
   public configuration: Configuration = <Configuration>{};
   genres: Genre[] = [];
   genresToDisplay = [
@@ -25,21 +24,25 @@ export class Frontpage implements OnInit {
     'Horror'
   ];
   public genreMovies: Record<string, Movie[]> = {};
+  public genreCount: Record<string, number> = {};
 
-  constructor() {
-    this.TmdbService = new TmdbService();
+  constructor(
+    private tmdbService: TmdbService) {
   }
 
   ngOnInit(): void {
-    this.TmdbService.getConfiguration()
+    this.tmdbService.getConfiguration()
       .then(config => this.configuration = config);
 
-    this.TmdbService.getGenres()
+    this.tmdbService.getGenres()
       .then(genres => {
         this.genres = this.filterGenres(genres);
-        this.genres.forEach(genre => this.TmdbService.getMoviesByGenre(genre.id)
-          .then(movies =>
-            this.genreMovies[genre.name] = movies));
+        this.genres.forEach(genre => this.tmdbService.getMoviesByGenre(genre.id)
+          .then(json => {
+            this.genreMovies[genre.name] = json.results;
+            this.genreCount[genre.name] = json.total_results;
+          })
+        );
       });
   }
 

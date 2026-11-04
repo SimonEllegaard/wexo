@@ -1,6 +1,10 @@
 import {Configuration} from "../models/configuration";
 import {Genre} from "../models/genre";
+import {Injectable} from "@angular/core";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class TmdbService {
 
   public async getConfiguration(): Promise<Configuration> {
@@ -22,17 +26,16 @@ export class TmdbService {
     }
   }
 
-  public async getMoviesByGenre(genreId: number) {
+  public async getMoviesByGenre(genreId: number): Promise<any> {
     try {
-      const json = await this.fetchAndGetJson(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}`);
-      return json.results;
+      return await this.fetchAndGetJson(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}`);
     } catch (error) {
       console.error(error);
       throw error;
     }
   }
 
-  private async fetchAndGetJson(url: string) {
+  private async fetchAndGetJson(url: string): Promise<any> {
     const options = {
       method: 'GET',
       headers: {

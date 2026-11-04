@@ -1,7 +1,7 @@
 <section *ngFor="let genre of genres" class="genre-section">
   <div class="genre-header">
     <h2>{{ genre.name }}</h2>
-    <a href="#">View all {{ genre.name }} ({{ genre.id }})</a>
+    <a href="#">View all {{ genre.name }} ({{ genreCount[genre.name] }})</a>
   </div>
 
   <div class="movie-row-container">
@@ -12,7 +12,7 @@
       ‹
     </button>
     <div #movieRow class="movie-row">
-      <div *ngFor="let movie of genreMovies[genre.name]" class="movie-card">
+      <div *ngFor="let movie of genreMovies[genre.name]" class="movie-card" [routerLink]="['/movie', movie.id]">
         <img [alt]="movie.title"
              [src]="configuration.images.secure_base_url + configuration.images.poster_sizes[2] + movie.poster_path"/>
         <h3>{{ movie.title }}</h3>
