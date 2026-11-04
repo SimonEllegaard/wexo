@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from './app-routing.module';
 import {Frontpage} from "./pages/frontpage/frontpage";
 
 @NgModule({
@@ -15,4 +14,5 @@ import {Frontpage} from "./pages/frontpage/frontpage";
   providers: [],
   bootstrap: [Frontpage]
 })
-export class AppModule { }
+export class AppModule {
+}

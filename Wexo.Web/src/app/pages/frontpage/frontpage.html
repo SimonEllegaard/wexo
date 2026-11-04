@@ -6,21 +6,22 @@
 
   <div class="movie-row-container">
     <button
-      class="scroll-button left"
       (click)="scroll(movieRow, 'left')"
-      aria-label="Scroll left">
+      aria-label="Scroll left"
+      class="scroll-button left">
       ‹
     </button>
-    <div class="movie-row" #movieRow>
+    <div #movieRow class="movie-row">
       <div *ngFor="let movie of genreMovies[genre.name]" class="movie-card">
-        <img [src]="configuration!.images.secure_base_url + configuration!.images.poster_sizes[2] + movie.poster_path" [alt]="movie.title"/>
+        <img [alt]="movie.title"
+             [src]="configuration.images.secure_base_url + configuration.images.poster_sizes[2] + movie.poster_path"/>
         <h3>{{ movie.title }}</h3>
       </div>
     </div>
     <button
-      class="scroll-button right"
       (click)="scroll(movieRow, 'right')"
-      aria-label="Scroll right">
+      aria-label="Scroll right"
+      class="scroll-button right">
       ›
     </button>
   </div>

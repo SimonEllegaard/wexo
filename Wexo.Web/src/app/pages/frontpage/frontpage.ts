@@ -1,7 +1,8 @@
-import {Component, ElementRef, OnInit, ViewChildren} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Genre} from "../../models/genre";
 import {Movie} from "../../models/movie";
 import {Configuration} from "../../models/configuration";
+import {TmdbService} from "../../services/tmdb.service";
 
 @Component({
   selector: 'frontpage',
@@ -9,7 +10,8 @@ import {Configuration} from "../../models/configuration";
   styleUrls: ['./frontpage.css']
 })
 export class Frontpage implements OnInit {
-  public configuration!: Configuration;
+  TmdbService: TmdbService;
+  public configuration: Configuration = <Configuration>{};
   genres: Genre[] = [];
   genresToDisplay = [
     'Action',
@@ -20,38 +22,29 @@ export class Frontpage implements OnInit {
     'Drama',
     'Crime',
     'Documentary',
-    'Horror',
-  ]
+    'Horror'
+  ];
   public genreMovies: Record<string, Movie[]> = {};
 
-  ngOnInit(): void
-  {
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMzFjODNjOWUwMWUyM2JlM2NmYjAyMWVkNDhjOWRjNiIsIm5iZiI6MTc5MzQ0ODkwMy4xNDEsInN1YiI6IjZhZTVkYmM3NWY0MjI4MzE1MmYxOWNkYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SSyM5XSlnmF7TgWNVLAgmSUAnZPRtaF5FnIFt9ChdJ8'
-      }
-    };
-
-    fetch('https://api.themoviedb.org/3/configuration', options)
-      .then(response => response.json())
-      .then(data => this.configuration = data);
-
-    fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
-      .then(res => res.json())
-      .then(json => {
-        this.genres = this.mapAndFilterGenres(json);
-        this.genres.forEach(genre => fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre.id}`, options)
-          .then(res => res.json())
-          .then(json => this.genreMovies[genre.name] = json.results))
-      })
-      .catch(err => console.error(err));
+  constructor() {
+    this.TmdbService = new TmdbService();
   }
 
-  mapAndFilterGenres(input: any): Genre[]
-  {
-    return input.genres.filter((g: Genre) => this.genresToDisplay.indexOf(g.name) != -1)
+  ngOnInit(): void {
+    this.TmdbService.getConfiguration()
+      .then(config => this.configuration = config);
+
+    this.TmdbService.getGenres()
+      .then(genres => {
+        this.genres = this.filterGenres(genres);
+        this.genres.forEach(genre => this.TmdbService.getMoviesByGenre(genre.id)
+          .then(movies =>
+            this.genreMovies[genre.name] = movies));
+      });
+  }
+
+  filterGenres(genres: any): Genre[] {
+    return genres.filter((g: Genre) => this.genresToDisplay.indexOf(g.name) != -1);
   }
 
   scroll(element: HTMLDivElement, direction: 'left' | 'right'): void {
