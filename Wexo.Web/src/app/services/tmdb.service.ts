@@ -3,7 +3,6 @@ import {Genre} from "../models/genre";
 import {Injectable} from "@angular/core";
 import {MovieDetails} from "../models/movieDetails";
 import {MovieCredits} from "../models/movieCredits";
-import {MovieVideos} from "../models/movieVideos";
 
 @Injectable({
   providedIn: 'root'
@@ -41,8 +40,8 @@ export class TmdbService {
     return await this.fetchAndGetJson(`https://api.themoviedb.org/3/movie/${movieId}/credits`);
   }
 
-  public async getMovieVideos(movieId: number): Promise<MovieVideos> {
-    return await this.fetchAndGetJson(`https://api.themoviedb.org/3/movie/${movieId}/vmoies`);
+  public async getMovieVideos(movieId: number): Promise<{ results: any[] }> {
+    return await this.fetchAndGetJson(`https://api.themoviedb.org/3/movie/${movieId}/videos`);
   }
 
   private async fetchAndGetJson(url: string): Promise<any> {

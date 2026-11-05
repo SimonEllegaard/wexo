@@ -23,25 +23,6 @@
       }
     }
   }
-
-  .movie-row {
-    display: flex;
-    gap: 1.25rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 0.5rem 0.25rem 1rem;
-
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    .movie-card {
-      scroll-snap-align: start;
-    }
-  }
 }
 .movie-row-container {
   position: relative;

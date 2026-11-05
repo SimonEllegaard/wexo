@@ -1,15 +1,70 @@
-<button (click)="updateWishlist()">
-  {{ isInWishlist ? 'Remove from wishlist' : 'Add to wishlist' }}
-</button>
-<div *ngFor="let property of movieDetails | keyvalue">
- {{ property.key | json | formatMovieProperty }}: {{ property.value | json | formatMovieProperty }}
- <hr>
-</div>
-<div *ngFor="let property of movieCredits | keyvalue">
- {{ property.key | json | formatMovieProperty }}: {{ property.value | json | formatMovieProperty }}
- <hr>
-</div>
-<div *ngFor="let property of movieVideos | keyvalue">
- {{ property.key | json | formatMovieProperty }}: {{ property.value | json | formatMovieProperty }}
- <hr>
+<div *ngIf="movieDetails && configuration && configuration.images" class="movie-details">
+  <div class="movie-backdrop">
+    <a routerLink="/" class="back-button">
+      ← Back to frontpage
+    </a>
+    <img
+      [alt]="movieDetails.title + ' backdrop'"
+      [src]="configuration.images.secure_base_url + configuration.images.backdrop_sizes[2] + movieDetails.backdrop_path"
+    />
+    <div class="backdrop-content">
+      <h1>
+        {{ movieDetails.title }}
+        ({{ movieDetails.release_date?.substring(0, 4) || 'Unknown year' }})
+      </h1>
+
+      <div class="genres">
+        <span *ngFor="let genre of movieDetails.genres">
+          {{ genre.name }}
+        </span>
+      </div>
+
+      <button (click)="updateWishlist()">
+        {{ isInWishlist ? 'Remove from wishlist' : 'Add to wishlist' }}
+      </button>
+    </div>
+  </div>
+  <section class="movie-info">
+    <img
+      [alt]="movieDetails.title + ' poster'"
+      [src]="configuration.images.secure_base_url +
+             configuration.images.poster_sizes[2] +
+             movieDetails.poster_path"
+      class="poster"
+    />
+
+    <div>
+      <h2>Overview</h2>
+      <p>{{ movieDetails.overview }}</p>
+    </div>
+  </section>
+  <section *ngIf="movieCredits" class="section">
+    <h2>Cast</h2>
+
+    <div class="cast-list">
+      <div *ngFor="let person of movieCredits.cast | slice:0:10"
+           class="cast-card">
+        <img
+          [alt]="person.name"
+          [src]="person.profile_path
+            ? configuration.images.secure_base_url +
+              configuration.images.profile_sizes[2] +
+              person.profile_path
+            : 'assets/no-profile.png'"
+        />
+        <strong>{{ person.name }}</strong>
+        <span>{{ person.character }}</span>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="movieCredits" class="section">
+    <h2>Crew</h2>
+    <p *ngFor="let person of movieCredits.crew | slice:0:10">
+      <span>{{ person.job }}: </span><strong>{{ person.name }}</strong>
+    </p>
+  </section>
+  <section *ngIf="trailerUrl" class="section">
+    <h2>Trailer</h2>
+    <iframe [src]="trailerUrl" allowfullscreen></iframe>
+  </section>
 </div>
