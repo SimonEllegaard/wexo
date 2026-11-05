@@ -15,7 +15,6 @@ import {Configuration} from "../../models/configuration";
 export class MovieDetailsPage implements OnInit {
   public movieDetails: MovieDetails = <MovieDetails>{}
   public movieCredits: MovieCredits = <MovieCredits>{}
-  public movieVideos: any[] = []
   private readonly movieId: number;
   public isInWishlist: boolean = false;
   public trailerUrl!: SafeResourceUrl;

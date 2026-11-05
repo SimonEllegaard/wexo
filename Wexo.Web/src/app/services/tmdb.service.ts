@@ -28,7 +28,7 @@ export class TmdbService {
     }
   }
 
-  public async getMoviesByGenre(genreId: number): Promise<any> {
+  public async getMoviesByGenre(genreId: number): Promise<{ results: any[], total_results: number }> {
     return await this.fetchAndGetJson(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}`);
   }
 
