@@ -69,14 +69,3 @@ export class MovieDetailsPage implements OnInit {
     );
   }
 }
-
-@Pipe({ name: 'formatMovieProperty' })
-export class FormatMovieProperty implements PipeTransform {
-  transform(value: string): string {
-    if(value.indexOf('"') != -1)
-    {
-      value = value.replace(/"/g,'');
-    }
-    return value;
-  }
-}

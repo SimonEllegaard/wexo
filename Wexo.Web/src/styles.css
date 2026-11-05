@@ -5,6 +5,7 @@
   --surface: #191e2b;
   --surface-hover: #222838;
   --accent: #a78bfa;
+  --accent-hover: #c4b5fd;
   --text-primary: #f8fafc;
   --text-secondary: #9ca3af;
   --border: #2b3242;
@@ -22,15 +23,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-button, input {
-  font: inherit;
-}
-
 a {
   color: inherit;
   text-decoration: none;
 }
 
 button {
+  font: inherit;
   cursor: pointer;
 }

@@ -1,16 +1,16 @@
 <div *ngIf="movieDetails && configuration && configuration.images" class="movie-details">
   <div class="movie-backdrop">
-    <a routerLink="/" class="back-button">
-      ← Back to frontpage
+    <a class="back-button" routerLink="/">
+      Back to frontpage
     </a>
     <img
       [alt]="movieDetails.title + ' backdrop'"
-      [src]="configuration.images.secure_base_url + configuration.images.backdrop_sizes[2] + movieDetails.backdrop_path"
+      [src]="configuration.images.secure_base_url + configuration.images.backdrop_sizes[3] + movieDetails.backdrop_path"
     />
     <div class="backdrop-content">
       <h1>
         {{ movieDetails.title }}
-        ({{ movieDetails.release_date?.substring(0, 4) || 'Unknown year' }})
+        <span *ngIf="movieDetails.release_date">({{ movieDetails.release_date.substring(0, 4) }})</span>
       </h1>
 
       <div class="genres">
@@ -59,8 +59,8 @@
   </section>
   <section *ngIf="movieCredits" class="section">
     <h2>Crew</h2>
-    <p *ngFor="let person of movieCredits.crew | slice:0:10">
-      <span>{{ person.job }}: </span><strong>{{ person.name }}</strong>
+    <p *ngFor="let person of movieCredits.crew">
+      <span *ngIf="['Director', 'Producer', 'Executive Producer'].indexOf(person.job) != -1">{{ person.job }}: <strong>{{ person.name }}</strong></span>
     </p>
   </section>
   <section *ngIf="trailerUrl" class="section">
