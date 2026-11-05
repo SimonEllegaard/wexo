@@ -1,8 +1,8 @@
 import {Configuration} from "../models/configuration";
 import {Genre} from "../models/genre";
 import {Injectable} from "@angular/core";
-import {MovieDetails} from "../models/movieDetails";
-import {MovieCredits} from "../models/movieCredits";
+import {MovieDetails} from "../models/movie-details";
+import {MovieCredits} from "../models/movie-credits";
 
 @Injectable({
   providedIn: 'root'

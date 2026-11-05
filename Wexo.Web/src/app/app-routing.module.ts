@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {Frontpage} from "./pages/frontpage/frontpage";
-import {MovieDetailsPage} from "./pages/movieDetails/movieDetailsPage";
-import {GenreMovies} from "./pages/genreMovies/genreMovies";
+import {MovieDetailsPage} from "./pages/movie-details/movie-details-page";
+import {GenreMovies} from "./pages/genre-movies/genre-movies";
 
 const routes: Routes = [
   { path: '', component: Frontpage },

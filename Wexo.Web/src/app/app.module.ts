@@ -2,9 +2,9 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {Frontpage} from "./pages/frontpage/frontpage";
-import {MovieDetailsPage} from "./pages/movieDetails/movieDetailsPage";
+import {MovieDetailsPage} from "./pages/movie-details/movie-details-page";
 import {AppComponent} from "./app.component";
-import {GenreMovies} from "./pages/genreMovies/genreMovies";
+import {GenreMovies} from "./pages/genre-movies/genre-movies";
 
 @NgModule({
   declarations: [

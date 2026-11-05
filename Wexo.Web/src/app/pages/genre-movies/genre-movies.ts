@@ -3,13 +3,15 @@ import {TmdbService} from "../../services/tmdb.service";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute} from "@angular/router";
 import {Movie} from "../../models/movie";
+import {Configuration} from "../../models/configuration";
 
 @Component({
   selector: 'genre-movies',
-  templateUrl: './genreMovies.html',
-  styleUrls: ['./genreMovies.css']
+  templateUrl: './genre-movies.html',
+  styleUrls: ['./genre-movies.css']
 })
 export class GenreMovies {
+  public configuration: Configuration = <Configuration>{};
   private readonly genreId: number;
   public movies: Movie[] = [];
   public totalCount: number = 0;
@@ -22,6 +24,9 @@ export class GenreMovies {
   }
 
   ngOnInit(): void {
+    this.tmdbService.getConfiguration()
+      .then(config => this.configuration = config);
+
     this.titleService.setTitle(`Frontpage`);
 
     this.tmdbService.getMoviesByGenre(this.genreId)

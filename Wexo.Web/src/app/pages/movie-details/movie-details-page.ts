@@ -1,16 +1,16 @@
-import {Component, OnInit, Pipe, PipeTransform} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {TmdbService} from "../../services/tmdb.service";
 import {ActivatedRoute} from "@angular/router";
-import {MovieDetails} from "../../models/movieDetails";
+import {MovieDetails} from "../../models/movie-details";
 import {DomSanitizer, SafeResourceUrl, Title} from "@angular/platform-browser";
-import {MovieCredits} from "../../models/movieCredits";
+import {MovieCredits} from "../../models/movie-credits";
 import {WishlistService} from "../../services/wishlist.service";
 import {Configuration} from "../../models/configuration";
 
 @Component({
   selector: 'movieDetailsPage',
-  templateUrl: './movieDetailsPage.html',
-  styleUrls: ['./movieDetailsPage.css']
+  templateUrl: './movie-details-page.html',
+  styleUrls: ['./movie-details-page.css']
 })
 export class MovieDetailsPage implements OnInit {
   public movieDetails: MovieDetails = <MovieDetails>{}

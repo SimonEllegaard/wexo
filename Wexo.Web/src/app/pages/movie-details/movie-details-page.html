@@ -42,8 +42,7 @@
     <h2>Cast</h2>
 
     <div class="cast-list">
-      <div *ngFor="let person of movieCredits.cast | slice:0:10"
-           class="cast-card">
+      <div *ngFor="let person of movieCredits.cast | slice:0:10" class="cast-card">
         <img
           [alt]="person.name"
           [src]="person.profile_path
