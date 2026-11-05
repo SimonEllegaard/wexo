@@ -1,0 +1,29 @@
+.movie-card {
+  scroll-snap-align: start;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.05);
+
+    img {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+  }
+}

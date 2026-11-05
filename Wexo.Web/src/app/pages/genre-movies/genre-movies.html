@@ -1,14 +1,7 @@
 {{ totalCount}}
 
-<div *ngFor="let movie of movies">
-  {{ movie | json }}
-</div>
-<div class="movie-list">
-  <div *ngFor="let movie of movies" class="cast-card">
-    <img [alt]="movie.title"
-         [src]="movie.poster_path
-                ? configuration.images.secure_base_url + configuration.images.poster_sizes[2] + movie.poster_path
-                : 'assets/no-poster.png'"/>
-    <strong>{{ movie.title }}</strong>
-  </div>
+<div *ngFor="let movie of movies" class="movie-list">
+  <movie-card [movie]="movie"
+              [imageUrlBase]="configuration.images.secure_base_url + configuration.images.poster_sizes[2]">
+  </movie-card>
 </div>

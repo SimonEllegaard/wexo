@@ -5,13 +5,15 @@ import {Frontpage} from "./pages/frontpage/frontpage";
 import {MovieDetailsPage} from "./pages/movie-details/movie-details-page";
 import {AppComponent} from "./app.component";
 import {GenreMovies} from "./pages/genre-movies/genre-movies";
+import {MovieCardComponent} from "./components/movie-card.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     Frontpage,
     MovieDetailsPage,
-    GenreMovies
+    GenreMovies,
+    MovieCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
-<div *ngFor="let movie of genreMovies[genre.name]" class="movie-card" [routerLink]="['/movie', movie.id]">
+<div class="movie-card" [routerLink]="['/movie', movie.id]">
   <img [alt]="movie.title"
        [src]="movie.poster_path
-                ? configuration.images.secure_base_url + configuration.images.poster_sizes[2] + movie.poster_path
-                : 'assets/no-poster.png'"/>
+                  ? imageUrlBase + movie.poster_path
+                  : 'assets/no-poster.png'"/>
   <h3>{{ movie.title }}</h3>
 </div>
