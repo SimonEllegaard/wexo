@@ -8,6 +8,7 @@ import {MovieCredits} from "../models/movie-credits";
   providedIn: 'root'
 })
 export class TmdbService {
+  private genres: Genre[] = [];
 
   public async getConfiguration(): Promise<Configuration> {
     try {
@@ -19,17 +20,17 @@ export class TmdbService {
   }
 
   public async getGenres(): Promise<Genre[]> {
-    try {
-      const json = await this.fetchAndGetJson('https://api.themoviedb.org/3/genre/movie/list?language=en');
-      return json.genres;
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
+    const json = await this.fetchAndGetJson('https://api.themoviedb.org/3/genre/movie/list');
+    return json.genres;
   }
 
-  public async getMoviesByGenre(genreId: number): Promise<{ results: any[], total_results: number }> {
-    return await this.fetchAndGetJson(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}`);
+  public async getGenre(genreId: number): Promise<Genre> {
+    const json = await this.fetchAndGetJson('https://api.themoviedb.org/3/genre/movie/list');
+    return json.genres.filter((genre: Genre) => genre.id == genreId)[0];
+  }
+
+  public async getMoviesByGenre(genreId: number, page: number = 1): Promise<{ results: any[], total_results: number, page: number, total_pages: number }> {
+    return await this.fetchAndGetJson(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&page=${page}`);
   }
 
   public async getMovieDetails(movieId: number): Promise<MovieDetails> {

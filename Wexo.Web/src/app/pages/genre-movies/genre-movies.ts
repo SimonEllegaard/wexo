@@ -4,6 +4,7 @@ import {Title} from "@angular/platform-browser";
 import {ActivatedRoute} from "@angular/router";
 import {Movie} from "../../models/movie";
 import {Configuration} from "../../models/configuration";
+import {Genre} from "../../models/genre";
 
 @Component({
   selector: 'genre-movies',
@@ -12,9 +13,12 @@ import {Configuration} from "../../models/configuration";
 })
 export class GenreMovies {
   public configuration: Configuration = <Configuration>{};
-  private readonly genreId: number;
+  public genre: Genre = <Genre>{};
   public movies: Movie[] = [];
-  public totalCount: number = 0;
+  public page: number = 1;
+  public totalPages: number = 0;
+  public totalResults: number = 0;
+  private readonly genreId: number;
 
   constructor(
     private tmdbService: TmdbService,
@@ -23,16 +27,34 @@ export class GenreMovies {
     this.genreId = this.route.snapshot.params.id;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.tmdbService.getConfiguration()
       .then(config => this.configuration = config);
 
-    this.titleService.setTitle(`Frontpage`);
+    this.tmdbService.getGenre(this.genreId).then(genre => {
+      this.genre = genre;
+      this.titleService.setTitle(this.genre.name);
+    });
 
-    this.tmdbService.getMoviesByGenre(this.genreId)
+    this.getMoviesAndSetPagination();
+  }
+  public previousPage(): void {
+    this.page -= 1;
+    this.getMoviesAndSetPagination();
+  }
+
+  public nextPage(): void {
+    this.page += 1;
+    this.getMoviesAndSetPagination();
+  }
+
+  private getMoviesAndSetPagination(): void {
+    this.tmdbService.getMoviesByGenre(this.genreId, this.page)
       .then(json => {
         this.movies = json.results;
-        this.totalCount = json.total_results;
+        this.page = json.page;
+        this.totalPages = json.total_pages;
+        this.totalResults = json.total_results;
       });
   }
 }

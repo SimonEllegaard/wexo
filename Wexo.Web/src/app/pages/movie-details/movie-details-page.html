@@ -14,7 +14,7 @@
       </h1>
 
       <div class="genres">
-        <span *ngFor="let genre of movieDetails.genres">
+        <span *ngFor="let genre of movieDetails.genres" [routerLink]="['/genre', genre.id]">
           {{ genre.name }}
         </span>
       </div>
