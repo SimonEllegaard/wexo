@@ -1,3 +1,6 @@
+import {MovieCredits} from "./movie-credits";
+import {MovieVideos} from "./movie-videos";
+
 export interface MovieDetails {
   adult: boolean;
   backdrop_path: string;
@@ -46,4 +49,6 @@ export interface MovieDetails {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  credits: MovieCredits;
+  videos: MovieVideos;
 }

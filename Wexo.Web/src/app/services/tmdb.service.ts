@@ -33,8 +33,12 @@ export class TmdbService {
     return await this.fetchAndGetJson(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&page=${page}`);
   }
 
+  public async getMoviesByIds(movieIds: number[]): Promise<{ results: any[], total_results: number, page: number, total_pages: number }> {
+    return await this.fetchAndGetJson(`https://api.themoviedb.org/3/movie${movieIds[0]}`);
+  }
+
   public async getMovieDetails(movieId: number): Promise<MovieDetails> {
-    return await this.fetchAndGetJson(`https://api.themoviedb.org/3/movie/${movieId}`);
+    return await this.fetchAndGetJson(`https://api.themoviedb.org/3/movie/${movieId}?append_to_response=videos,credits`);
   }
 
   public async getMovieCredits(movieId: number): Promise<MovieCredits> {

@@ -6,6 +6,7 @@ import {MovieDetailsPage} from "./pages/movie-details/movie-details-page";
 import {AppComponent} from "./app.component";
 import {GenreMovies} from "./pages/genre-movies/genre-movies";
 import {MovieCardComponent} from "./components/movie-card.component";
+import {Wishlist} from "./pages/wishlist/wishlist";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {MovieCardComponent} from "./components/movie-card.component";
     Frontpage,
     MovieDetailsPage,
     GenreMovies,
-    MovieCardComponent
+    MovieCardComponent,
+    Wishlist
   ],
   imports: [
     BrowserModule,

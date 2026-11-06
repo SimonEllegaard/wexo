@@ -1,5 +1,4 @@
 export interface MovieCredits {
-  id: number
   cast: {
     adult: boolean
     gender: number

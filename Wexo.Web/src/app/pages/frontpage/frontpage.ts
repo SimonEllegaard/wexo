@@ -51,7 +51,7 @@ export class Frontpage implements OnInit {
   }
 
   filterGenres(genres: any): Genre[] {
-    return genres.filter((g: Genre) => this.genresToDisplay.indexOf(g.name) != -1);
+    return genres.filter((g: Genre) => this.genresToDisplay.includes(g.name));
   }
 
   scroll(element: HTMLDivElement, direction: 'left' | 'right'): void {

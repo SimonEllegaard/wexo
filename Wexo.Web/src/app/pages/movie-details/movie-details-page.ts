@@ -32,14 +32,31 @@ export class MovieDetailsPage implements OnInit {
   ngOnInit(): void {
     this.tmdbService.getConfiguration()
       .then(config => this.configuration = config);
-    this.isInWishlist = this.wishlistService.contains(this.movieId);
+
+    this.isInWishlist = this.wishlistService.contains(this.movieDetails);
+
     this.tmdbService.getMovieDetails(this.movieId)
       .then(movieDetails => {
+        console.log(movieDetails);
         this.movieDetails = movieDetails;
         this.titleService.setTitle(`${this.movieDetails.title}`);
+
+        this.movieCredits = movieDetails.credits;
+
+        const trailer = movieDetails.videos.results.find(
+          (video: any) =>
+            video.site === 'YouTube' &&
+            video.type === 'Trailer' &&
+            video.official
+        );
+        if(trailer) {
+          this.setTrailerUrl(trailer.key);
+        }
       });
+
     this.tmdbService.getMovieCredits(this.movieId)
       .then((movieCredits: MovieCredits) => this.movieCredits = movieCredits);
+
     this.tmdbService.getMovieVideos(this.movieId)
       .then((movieVideos: { results: any[] }) => {
         const trailer = movieVideos.results.find(
@@ -54,13 +71,13 @@ export class MovieDetailsPage implements OnInit {
 
   public updateWishlist(): void {
     if (this.isInWishlist) {
-      this.wishlistService.remove(this.movieId);
+      this.wishlistService.remove(this.movieDetails);
     } else {
-      this.wishlistService.add(this.movieId);
+      this.wishlistService.add(this.movieDetails);
     }
 
     this.isInWishlist = this.wishlistService
-      .contains(this.movieId);
+      .contains(this.movieDetails);
   }
   public setTrailerUrl(key: string): void {
     this.trailerUrl = this.sanitizer.bypassSecurityTrustResourceUrl(

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {MovieDetails} from "../models/movie-details";
 
 @Injectable({
   providedIn: 'root'
@@ -7,32 +8,35 @@ export class WishlistService {
 
   private readonly storageKey = 'wishlist';
 
-  getWishlist(): number[] {
+  getWishlist(): { id: number, title: string, poster_path: string }[] {
     const wishlist = localStorage.getItem(this.storageKey);
     return wishlist ? JSON.parse(wishlist) : [];
   }
 
-  add(movieId: number): void {
+  add(movie: MovieDetails): void {
     const wishlist = this.getWishlist();
-
-    if (!wishlist.includes(movieId)) {
-      wishlist.push(movieId);
+    if (!wishlist.includes(this.toLocalStorageMovie(movie))) {
+      wishlist.push(this.toLocalStorageMovie(movie));
       this.save(wishlist);
     }
   }
 
-  remove(movieId: number): void {
+  remove(movie: MovieDetails): void {
     const wishlist = this.getWishlist()
-      .filter(id => id !== movieId);
+      .filter(wishlistMovie => wishlistMovie.id !== movie.id);
 
     this.save(wishlist);
   }
 
-  contains(movieId: number): boolean {
-    return this.getWishlist().includes(movieId);
+  contains(movie: MovieDetails): boolean {
+    return this.getWishlist().includes(this.toLocalStorageMovie(movie));
   }
 
-  private save(wishlist: number[]): void {
+  private toLocalStorageMovie(movie: MovieDetails): { id: number, title: string, poster_path: string } {
+    return { id: movie.id, title: movie.title, poster_path: movie.poster_path }
+  }
+
+  private save(wishlist: { id: number, title: string, poster_path: string }[]): void {
     localStorage.setItem(
       this.storageKey,
       JSON.stringify(wishlist)
