@@ -7,7 +7,7 @@
 /modules.xml
 /contentModel.xml
 /projectSettingsUpdater.xml
-/.idea.Web.iml
+/.idea.Wexo.Web.iml
 # Ignored default folder with query files
 /queries/
 # Datasource local storage ignored files
