@@ -12,9 +12,10 @@
       ‹
     </button>
     <div #movieRow class="movie-row">
-      <div *ngFor="let movie of genreMovies[genre.name]" class="movie-card-container" [routerLink]="['/movie', movie.id]">
-        <movie-card [movie]="movie"
-                    [imageUrlBase]="configuration.images.secure_base_url + configuration.images.poster_sizes[2]">
+      <div *ngFor="let movie of genreMovies[genre.name]" [routerLink]="['/movie', movie.id]"
+           class="movie-card-container">
+        <movie-card [imageUrlBase]="configuration.images.secure_base_url + configuration.images.poster_sizes[2]"
+                    [movie]="movie">
         </movie-card>
       </div>
     </div>

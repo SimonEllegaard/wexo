@@ -1,6 +1,5 @@
 import {Component} from "@angular/core";
 import {Title} from "@angular/platform-browser";
-import {ActivatedRoute} from "@angular/router";
 import {WishlistService} from "../../services/wishlist.service";
 import {TmdbService} from "../../services/tmdb.service";
 import {Configuration} from "../../models/configuration";

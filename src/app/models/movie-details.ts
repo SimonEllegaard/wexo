@@ -9,13 +9,13 @@ export interface MovieDetails {
     name: string;
     poster_path: string;
     backdrop_path: string;
-  }
+  };
   budget: number;
   genres:
-  {
-    id: number;
-    name: string;
-  }[]
+    {
+      id: number;
+      name: string;
+    }[];
   homepage: string;
   id: number;
   imdb_id: string;
@@ -30,11 +30,11 @@ export interface MovieDetails {
     logo_path: string;
     name: string;
     origin_country: string;
-  }[]
+  }[];
   production_countries: {
     iso_3166_1: string;
     name: string;
-  }[]
+  }[];
   release_date: string;
   revenue: number;
   runtime: number;
@@ -42,7 +42,7 @@ export interface MovieDetails {
     english_name: string;
     iso_639_1: string;
     name: string;
-  }[]
+  }[];
   status: string;
   tagline: string;
   title: string;

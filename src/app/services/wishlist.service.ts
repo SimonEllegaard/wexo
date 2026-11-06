@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Movie} from "../models/movie";
 import {MovieDetails} from "../models/movie-details";
 
@@ -34,7 +34,7 @@ export class WishlistService {
   }
 
   private toLocalStorageMovie(movie: Movie | MovieDetails): { id: number, title: string, poster_path: string } {
-    return { id: movie.id, title: movie.title, poster_path: movie.poster_path }
+    return {id: movie.id, title: movie.title, poster_path: movie.poster_path};
   }
 
   private save(wishlist: { id: number, title: string, poster_path: string }[]): void {

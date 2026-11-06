@@ -38,6 +38,7 @@ export class GenreMovies {
 
     this.getMoviesAndSetPagination();
   }
+
   public previousPage(): void {
     this.page -= 1;
     this.getMoviesAndSetPagination();

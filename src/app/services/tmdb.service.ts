@@ -30,11 +30,21 @@ export class TmdbService {
     return json.genres.filter((genre: Genre) => genre.id == genreId)[0];
   }
 
-  public async getMoviesByGenre(genreId: number, page: number = 1): Promise<{ results: any[], total_results: number, page: number, total_pages: number }> {
+  public async getMoviesByGenre(genreId: number, page: number = 1): Promise<{
+    results: any[],
+    total_results: number,
+    page: number,
+    total_pages: number
+  }> {
     return await this.fetchAndGetJson(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&page=${page}`);
   }
 
-  public async getMoviesByIds(movieIds: number[]): Promise<{ results: any[], total_results: number, page: number, total_pages: number }> {
+  public async getMoviesByIds(movieIds: number[]): Promise<{
+    results: any[],
+    total_results: number,
+    page: number,
+    total_pages: number
+  }> {
     return await this.fetchAndGetJson(`https://api.themoviedb.org/3/movie${movieIds[0]}`);
   }
 

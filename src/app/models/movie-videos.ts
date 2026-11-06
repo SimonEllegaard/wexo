@@ -5,5 +5,5 @@ export interface MovieVideos {
     official: boolean;
     site: string;
     type: string;
-  }[]
+  }[];
 }

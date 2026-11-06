@@ -13,12 +13,12 @@ import {Configuration} from "../../models/configuration";
   styleUrls: ['./movie-details-page.css']
 })
 export class MovieDetailsPage implements OnInit {
-  public movieDetails: MovieDetails = <MovieDetails>{}
-  public movieCredits: MovieCredits = <MovieCredits>{}
-  private readonly movieId: number;
+  public movieDetails: MovieDetails = <MovieDetails>{};
+  public movieCredits: MovieCredits = <MovieCredits>{};
   public isInWishlist: boolean = false;
   public trailerUrl!: SafeResourceUrl;
   public configuration: Configuration = <Configuration>{};
+  private readonly movieId: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,23 +47,9 @@ export class MovieDetailsPage implements OnInit {
             video.type === 'Trailer' &&
             video.official
         );
-        if(trailer) {
+        if (trailer) {
           this.setTrailerUrl(trailer.key);
         }
-      });
-
-    this.tmdbService.getMovieCredits(this.movieId)
-      .then((movieCredits: MovieCredits) => this.movieCredits = movieCredits);
-
-    this.tmdbService.getMovieVideos(this.movieId)
-      .then((movieVideos: { results: any[] }) => {
-        const trailer = movieVideos.results.find(
-          (video: any) =>
-            video.site === 'YouTube' &&
-            video.type === 'Trailer' &&
-            video.official
-        );
-        this.setTrailerUrl(trailer.key);
       });
   }
 

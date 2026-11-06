@@ -12,7 +12,7 @@ export interface MovieCredits {
     character: string
     credit_id: string
     order: number
-  }[]
+  }[];
   crew: {
     adult: boolean
     gender: number
@@ -25,5 +25,5 @@ export interface MovieCredits {
     credit_id: string
     department: string
     job: string
-  }[]
+  }[];
 }

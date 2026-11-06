@@ -9,13 +9,16 @@ The application allows users to explore movies, browse movies by genre, view det
 The application implements all required features from the WEXO code challenge, including the optional features.
 
 ### Movie discovery
+
 - Browse movies organised into genre-based sections.
 - Horizontally scroll through movie collections.
 - Navigate to dedicated pages displaying movies from a selected genre.
 - Clickable genre tags that take users directly to the corresponding genre page.
 
 ### Movie details
+
 Each movie has a dedicated details page displaying:
+
 - Title and release year.
 - Movie description.
 - Cover poster and cinematic backdrop.
@@ -25,12 +28,14 @@ Each movie has a dedicated details page displaying:
 - Embedded YouTube trailer, when available.
 
 ### Wishlist
+
 - Add and remove movies from a personal wishlist.
 - Wishlist persists using browser storage.
 - Confirmation before removing a movie from the wishlist page.
 - Movies can be added back directly from their details page without an additional confirmation step.
 
 ### Responsive design
+
 The application is designed to work on desktop, tablet and mobile devices, with layouts adapting to different screen sizes.
 
 ## Technology stack
