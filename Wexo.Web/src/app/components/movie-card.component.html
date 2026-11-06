@@ -1,7 +1,0 @@
-<div class="movie-card" [routerLink]="['/movie', movie.id]">
-  <img [alt]="movie.title"
-       [src]="movie.poster_path
-                  ? imageUrlBase + movie.poster_path
-                  : 'assets/no-poster.png'"/>
-  <h3>{{ movie.title }}</h3>
-</div>
