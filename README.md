@@ -130,3 +130,9 @@ A few implementation choices are worth mentioning:
 - **Genre navigation:** Genre tags are interactive and provide direct navigation to genre-specific movie listings.
 - **Wishlist confirmation:** Removing a movie from the wishlist page requires confirmation. Removing it from the movie details page does not, as it can easily be added again using the same button.
 - **No backend:** The application communicates directly with TMDB and uses browser storage for wishlist persistence.
+
+### Code structure and documentation
+
+The code is structured with readability and maintainability in mind. Components, methods and variables use descriptive names, and responsibilities are separated to make the application easy to understand and navigate.
+
+I have intentionally kept inline comments to a minimum. Given the relatively straightforward nature of the application, I believe the code's naming and structure provide sufficient context without comments that merely repeat the implementation. Comments are most valuable when explaining non-obvious logic or documenting decisions that might otherwise be unclear.
