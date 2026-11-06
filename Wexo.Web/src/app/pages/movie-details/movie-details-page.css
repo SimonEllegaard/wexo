@@ -7,6 +7,7 @@
 .movie-backdrop {
   position: relative;
   height: 450px;
+  margin-top: 1rem;
 
   img {
     width: 100%;

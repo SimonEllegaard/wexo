@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {Movie} from "../models/movie";
 import {MovieDetails} from "../models/movie-details";
 
 @Injectable({
@@ -13,7 +14,7 @@ export class WishlistService {
     return wishlist ? JSON.parse(wishlist) : [];
   }
 
-  add(movie: MovieDetails): void {
+  add(movie: Movie | MovieDetails): void {
     const wishlist = this.getWishlist();
     if (!wishlist.includes(this.toLocalStorageMovie(movie))) {
       wishlist.push(this.toLocalStorageMovie(movie));
@@ -21,18 +22,18 @@ export class WishlistService {
     }
   }
 
-  remove(movie: MovieDetails): void {
+  remove(movie: Movie | MovieDetails): void {
     const wishlist = this.getWishlist()
       .filter(wishlistMovie => wishlistMovie.id !== movie.id);
 
     this.save(wishlist);
   }
 
-  contains(movie: MovieDetails): boolean {
-    return this.getWishlist().includes(this.toLocalStorageMovie(movie));
+  contains(movie: Movie | MovieDetails): boolean {
+    return this.getWishlist().some(wishlistMovie => wishlistMovie.id === movie.id);
   }
 
-  private toLocalStorageMovie(movie: MovieDetails): { id: number, title: string, poster_path: string } {
+  private toLocalStorageMovie(movie: Movie | MovieDetails): { id: number, title: string, poster_path: string } {
     return { id: movie.id, title: movie.title, poster_path: movie.poster_path }
   }
 

@@ -1,0 +1,10 @@
+<div class="wishlist">
+  <div *ngFor="let movie of wishlist">
+    <movie-card [movie]="movie"
+                [imageUrlBase]="configuration.images.secure_base_url + configuration.images.poster_sizes[2]">
+    </movie-card>
+    <button (click)="removeWishlist(movie)">
+      Remove from wishlist
+    </button>
+  </div>
+</div>

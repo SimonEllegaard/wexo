@@ -9,7 +9,8 @@ button {
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
-  text-decoration: none;
+  margin-left: 1rem;
+  margin-top: 1rem;
 }
 
 button:hover {

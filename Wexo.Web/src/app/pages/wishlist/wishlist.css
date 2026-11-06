@@ -1,0 +1,17 @@
+.wishlist {
+  display: grid;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  flex-direction: row;
+}
+button {
+  background: var(--accent);
+  color: var(--background);
+  border: none;
+  border-radius: 6px;
+  padding: 5px 5px;
+  cursor: pointer;
+}

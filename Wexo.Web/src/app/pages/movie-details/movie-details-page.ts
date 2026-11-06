@@ -33,17 +33,15 @@ export class MovieDetailsPage implements OnInit {
     this.tmdbService.getConfiguration()
       .then(config => this.configuration = config);
 
-    this.isInWishlist = this.wishlistService.contains(this.movieDetails);
-
     this.tmdbService.getMovieDetails(this.movieId)
       .then(movieDetails => {
-        console.log(movieDetails);
         this.movieDetails = movieDetails;
         this.titleService.setTitle(`${this.movieDetails.title}`);
+        this.isInWishlist = this.wishlistService.contains(this.movieDetails);
 
-        this.movieCredits = movieDetails.credits;
+        this.movieCredits = this.movieDetails.credits;
 
-        const trailer = movieDetails.videos.results.find(
+        const trailer = this.movieDetails.videos.results.find(
           (video: any) =>
             video.site === 'YouTube' &&
             video.type === 'Trailer' &&
@@ -69,7 +67,7 @@ export class MovieDetailsPage implements OnInit {
       });
   }
 
-  public updateWishlist(): void {
+  public toggleWishlist(): void {
     if (this.isInWishlist) {
       this.wishlistService.remove(this.movieDetails);
     } else {
@@ -79,6 +77,7 @@ export class MovieDetailsPage implements OnInit {
     this.isInWishlist = this.wishlistService
       .contains(this.movieDetails);
   }
+
   public setTrailerUrl(key: string): void {
     this.trailerUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       `https://www.youtube.com/embed/${key}`

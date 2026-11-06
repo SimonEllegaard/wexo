@@ -3,6 +3,7 @@ import {Genre} from "../models/genre";
 import {Injectable} from "@angular/core";
 import {MovieDetails} from "../models/movie-details";
 import {MovieCredits} from "../models/movie-credits";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +55,7 @@ export class TmdbService {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMzFjODNjOWUwMWUyM2JlM2NmYjAyMWVkNDhjOWRjNiIsIm5iZiI6MTc5MzQ0ODkwMy4xNDEsInN1YiI6IjZhZTVkYmM3NWY0MjI4MzE1MmYxOWNkYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SSyM5XSlnmF7TgWNVLAgmSUAnZPRtaF5FnIFt9ChdJ8'
+        Authorization: `Bearer ${environment.tmdb.accessToken}`
       }
     };
     const response = await fetch(url, options);
